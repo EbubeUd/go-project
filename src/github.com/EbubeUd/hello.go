@@ -2,21 +2,14 @@ package main
 
 import (
 	"fmt"
-	"strconv"
 )
 
-var hello string = "local/private"
-var Hello string = "Public"
-
 func main() {
-	var i float32 = 20.
-	k := 9
+	var n complex64 = 1 + 2i
+	var j complex64 = complex(1, 2)
+	var r rune = 'a'
 
-	k = int(i)
-	hello = strconv.Itoa(k)
-
-	fmt.Println(i)
-	fmt.Printf("%v is %T", i, i)
-	fmt.Printf("%v is %T", k, k)
-	fmt.Printf("%v is %T", hello, hello)
+	fmt.Printf("%v and %T\n", real(n), n)
+	fmt.Printf("%v and %T\n", imag(j), j)
+	fmt.Printf("%v and %T\n", r, r)
 }
