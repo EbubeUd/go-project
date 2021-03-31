@@ -2,30 +2,54 @@ package main
 
 import (
 	"fmt"
+	"reflect"
 )
 
-func main() {
-	a := [5]uint8{1, 2, 3, 4, 5}
-	b := &a
-	c := a[:]
-	d := a[:2]
-	e := a[2:]
-	f := a[2:4]
-	g := a[:]
-	g = append(g, []uint8{1, 2, 3, 4, 5, 6}...)
-	h := len(g)
-	i := make([]uint8, 10, 100)
-	j := len(i)
+type Doctor struct {
+	User
+	age         uint
+	isQualified bool
+}
 
-	fmt.Printf("%v\n", a)
-	fmt.Printf("%v\n", b)
-	fmt.Printf("%v\n", c)
-	fmt.Printf("%v\n", d)
-	fmt.Printf("%v\n", e)
-	fmt.Printf("%v\n", f)
-	fmt.Printf("%v\n", g)
-	fmt.Printf("%v\n", h)
-	fmt.Printf("%v\n", i)
-	fmt.Printf("%v\n", j)
+type User struct {
+	name  string `required max:"100"`
+	email string
+}
+
+func main() {
+
+	people := map[string]uint8{
+		"Hello": 1,
+		"World": 2,
+	}
+
+	places := make(map[string]uint8)
+
+	places = map[string]uint8{
+		"Enugu": 1,
+		"Delta": 2,
+	}
+
+	delete(places, "Enugu")
+	a := len(people)
+
+	_, out := places["Delta"]
+
+	aDoc := Doctor{}
+
+	aDoc.name = "Ebube"
+	aDoc.age = 12
+	aDoc.email = "kripsonud@gmail.com"
+	aDoc.isQualified = true
+
+	t := reflect.TypeOf(User{})
+	field, _ := t.FieldByName("name")
+
+	fmt.Printf("%+v\n", people["Hello"])
+	fmt.Printf("%+v\n", a)
+	fmt.Printf("%+v\n", places)
+	fmt.Printf("%+v\n", out)
+	fmt.Printf("%+v\n", aDoc)
+	fmt.Printf("%+v\n", field)
 
 }
